@@ -1,7 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function updateSession(request: NextRequest) {
+export async function updateSession(
+  request: NextRequest,
+  allowedPaths: string[]
+) {
   let supabaseResponse = NextResponse.next({
     request,
   });
@@ -39,20 +42,12 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // If no 'user', potentially respond by redirecting the user to the login page
   if (
     !user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/registro") &&
-    !request.nextUrl.pathname.startsWith("/solicitar") &&
-    !request.nextUrl.pathname.startsWith("/confirmar") &&
-    !request.nextUrl.pathname.startsWith("/exito-registro") &&
-    !request.nextUrl.pathname.startsWith("/exito-verificacion") &&
-    !request.nextUrl.pathname.startsWith("/error-verificacion")
+    !allowedPaths.some((path) => request.nextUrl.pathname.startsWith(path))
   ) {
-    // no user, potentially respond by redirecting the user to the login page
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.

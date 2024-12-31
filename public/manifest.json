@@ -2,6 +2,7 @@
   "name": "Reportes Granada",
   "short_name": "Reportes",
   "description": "Aplicación de reportes de Fábrica Granada",
+  "id": "/",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
