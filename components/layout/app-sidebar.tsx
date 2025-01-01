@@ -1,15 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  BookOpen,
-  Bot,
-  Frame,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { ChartPie, Package, SquareChevronRight } from "lucide-react";
 
 import { NavHeader } from "./nav-header";
 import { NavGroup } from "@/components/layout/nav-group";
@@ -21,7 +13,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-// This is sample data.
+// Sample user data for the sidebar.
 const user = {
   data: {
     name: "shadcn",
@@ -30,89 +22,48 @@ const user = {
   },
 };
 
-const sales = {
-  label: "Sales",
+// Sample menu for the sidebar.
+const generales = {
+  label: "Reportes",
   items: [
     {
-      title: "Playground",
+      title: "Ventas",
       url: "#",
-      icon: SquareTerminal,
+      icon: ChartPie,
       items: [
         {
-          title: "History",
+          title: "Por Canal",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Por Producto",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Por Categoría",
+          url: "#",
+        },
+        {
+          title: "Por Unidades Mensuales",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Producción",
       url: "#",
-      icon: Bot,
+      icon: Package,
       items: [
         {
-          title: "Genesis",
+          title: "Orden Sugerida - PT",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Orden Sugerida - Materiales",
           url: "#",
         },
         {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
+          title: "Unidades Producidas Mensuales",
           url: "#",
         },
       ],
@@ -120,13 +71,13 @@ const sales = {
   ],
 };
 
-const inventory = {
-  label: "Inventory",
+const desarrollo = {
+  label: "Desarrollo",
   items: [
     {
-      title: "Design Engineering",
+      title: "Plantillas",
       url: "#",
-      icon: Frame,
+      icon: SquareChevronRight,
       items: [
         {
           title: "History",
@@ -138,48 +89,6 @@ const inventory = {
         },
         {
           title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Travel",
-      url: "#",
-      icon: Map,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
           url: "#",
         },
       ],
@@ -192,8 +101,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar collapsible="icon" {...props}>
       <NavHeader />
       <SidebarContent>
-        <NavGroup label={sales.label} items={sales.items} />
-        <NavGroup label={inventory.label} items={inventory.items} />
+        <NavGroup label={generales.label} items={generales.items} />
+        <NavGroup label={desarrollo.label} items={desarrollo.items} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user.data} />

@@ -43,7 +43,8 @@ export function LoginForm() {
       });
     }
     toast({
-      description: "Sesión iniciada!",
+      description: "✅ Sesión iniciada!",
+      duration: 3000,
     });
   }
 

@@ -18,6 +18,10 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+// Sign out
+import { toast } from "@/hooks/use-toast";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 export function NavUser({
   user,
@@ -29,6 +33,27 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+      toast({
+        description: "✅ Sesión terminada.",
+      });
+      router.push("/login");
+    } catch (error) {
+      // Log the error to services like Sentry
+      console.error("Error signing out:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description:
+          "Ocurrió un error inesperado y no fue posible cerrar tu sesión.",
+      });
+    }
+  };
 
   return (
     <SidebarMenu>
@@ -78,7 +103,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut}>
               <LogOut />
               Cerrar Sesión
             </DropdownMenuItem>
