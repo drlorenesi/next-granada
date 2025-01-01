@@ -12,11 +12,8 @@ export async function login(formData: z.infer<typeof loginSchema>) {
   const validData = loginSchema.parse(formData);
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword(validData);
-  // Log the error to services like Sentry
-  console.log(error);
-  if (error) return error.code;
-  revalidatePath("/", "layout");
-  redirect("/");
+  if (error) return { error: error.message };
+  return { error: null };
 }
 
 export async function signup(formData: z.infer<typeof registerSchema>) {

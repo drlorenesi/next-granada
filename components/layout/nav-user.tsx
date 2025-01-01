@@ -40,7 +40,9 @@ export function NavUser({
       const supabase = createClient();
       await supabase.auth.signOut();
       toast({
-        description: "✅ Sesión terminada.",
+        title: "Sesión Finalizada 👋",
+        description: "Has finalizado tu sesión correctamente. ¡Hasta pronto!",
+        duration: 3000,
       });
       router.push("/login");
     } catch (error) {

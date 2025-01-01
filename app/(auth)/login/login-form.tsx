@@ -8,6 +8,7 @@ import { Form } from "@/components/ui/form";
 import { FormInputField } from "@/components/form-inputs/form-input-field";
 import { SubmitButton } from "@/components/form-inputs/submit-button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -21,6 +22,8 @@ import { loginSchema } from "../schemas";
 import { login } from "../actions";
 
 export function LoginForm() {
+  const router = useRouter();
+
   // 1. Define default values.
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -34,18 +37,21 @@ export function LoginForm() {
   async function onSubmit(data: z.infer<typeof loginSchema>) {
     // Call the Server Action
     const result = await login(data);
-    if (result === "invalid_credentials") {
+    if (result.error) {
       toast({
         variant: "destructive",
         title: "Credenciales inválidas",
         description:
           "El correo o la contraseña son incorrectos. Por favor, inténtalo de nuevo.",
       });
+    } else {
+      toast({
+        title: "Sesión Iniciada ✅",
+        description: "Has iniciado una nueva sesión exitosamente.",
+        duration: 3000,
+      });
+      router.push("/");
     }
-    toast({
-      description: "✅ Sesión iniciada!",
-      duration: 3000,
-    });
   }
 
   return (
