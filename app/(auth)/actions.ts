@@ -8,7 +8,7 @@ import { createClient } from "@/utils/supabase/server";
 import { loginSchema, registerSchema } from "./schemas";
 
 export async function login(formData: z.infer<typeof loginSchema>) {
-  // Validate the form data
+  // Validate and cleant form data
   const validData = loginSchema.parse(formData);
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword(validData);

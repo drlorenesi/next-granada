@@ -35,7 +35,7 @@ export function LoginForm() {
 
   // 2. Define a submit handler.
   async function onSubmit(data: z.infer<typeof loginSchema>) {
-    // Call the Server Action
+    // Call Server Action
     const result = await login(data);
     if (result.error) {
       toast({
@@ -43,6 +43,7 @@ export function LoginForm() {
         title: "Credenciales inválidas",
         description:
           "El correo o la contraseña son incorrectos. Por favor, inténtalo de nuevo.",
+        duration: 3000,
       });
     } else {
       toast({

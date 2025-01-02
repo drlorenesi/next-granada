@@ -33,19 +33,19 @@ const generales = {
       items: [
         {
           title: "Por Canal",
-          url: "#",
+          url: "/reportes/ventas/canal",
         },
         {
           title: "Por Producto",
-          url: "#",
+          url: "/reportes/ventas/producto",
         },
         {
           title: "Por Categoría",
-          url: "#",
+          url: "/reportes/ventas/categoria",
         },
         {
           title: "Por Unidades Mensuales",
-          url: "#",
+          url: "/reportes/ventas/unidades",
         },
       ],
     },
@@ -56,15 +56,15 @@ const generales = {
       items: [
         {
           title: "Orden Sugerida - PT",
-          url: "#",
+          url: "/reportes/produccion/pt",
         },
         {
           title: "Orden Sugerida - Materiales",
-          url: "#",
+          url: "/reportes/produccion/materiales",
         },
         {
           title: "Unidades Producidas Mensuales",
-          url: "#",
+          url: "/reportes/produccion/unidades",
         },
       ],
     },
