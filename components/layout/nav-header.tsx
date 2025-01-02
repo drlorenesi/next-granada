@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Triangle } from "lucide-react";
 import {
   SidebarHeader,
@@ -12,7 +13,7 @@ export function NavHeader() {
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton size="lg" asChild>
-            <a href="#">
+            <Link href="/">
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
                 <Triangle className="size-4" />
               </div>
@@ -20,7 +21,7 @@ export function NavHeader() {
                 <span className="truncate font-semibold">Granada</span>
                 <span className="truncate text-xs">LTDA</span>
               </div>
-            </a>
+            </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>

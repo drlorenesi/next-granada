@@ -56,11 +56,11 @@ const generales = {
       items: [
         {
           title: "Orden Sugerida - PT",
-          url: "/reportes/produccion/pt",
+          url: "/reportes/produccion/sugerido-pt",
         },
         {
           title: "Orden Sugerida - Materiales",
-          url: "/reportes/produccion/materiales",
+          url: "/reportes/produccion/sugerido-ma",
         },
         {
           title: "Unidades Producidas Mensuales",
@@ -80,16 +80,16 @@ const desarrollo = {
       icon: SquareChevronRight,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Layouts",
+          url: "/desarrollo/plantillas/layouts",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Fechas",
+          url: "/desarrollo/plantillas/fechas",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Tipografía",
+          url: "/desarrollo/plantillas/tipografia",
         },
       ],
     },
