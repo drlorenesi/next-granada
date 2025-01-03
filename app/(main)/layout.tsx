@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
-  title: "Granda",
+  title: "Reportes Granada",
   description: "Sistema de reportes gereciales",
 };
 
@@ -32,6 +32,15 @@ export default async function Layout({
   if (error || !data?.user) {
     redirect("/login");
   }
+  // const user = {
+  //   name: data?.user.user_metadata?.first_name ?? "",
+  //   email: data?.user.user_metadata?.email ?? "",
+  //   avatar: null,
+  //   initials:
+  //     (data?.user.user_metadata?.first_name.trim()?.[0]?.toUpperCase() ?? "") +
+  //     (data?.user.user_metadata?.last_name.trim()?.[0]?.toUpperCase() ?? ""),
+  // };
+  // console.log(user);
 
   return (
     <SidebarProvider>

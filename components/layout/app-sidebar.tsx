@@ -15,11 +15,10 @@ import {
 
 // Sample user data for the sidebar.
 const user = {
-  data: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
+  name: "shadcn",
+  email: "m@example.com",
+  avatar: "/avatars/shadcn.jpg",
+  initials: "SC",
 };
 
 // Sample menu for the sidebar.
@@ -96,6 +95,13 @@ const desarrollo = {
   ],
 };
 
+// interface User {
+//   name: string;
+//   email: string;
+//   avatar?: string;
+//   initials?: string;
+// }
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -105,7 +111,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavGroup label={desarrollo.label} items={desarrollo.items} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user.data} />
+        <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

@@ -20,7 +20,7 @@ export const loginSchema = z.object({
 
 export const registerSchema = z
   .object({
-    name: z
+    firstName: z
       .string()
       .min(2, { message: "Tu nombre debe contener al menos 2 caracteres." })
       .max(32, { message: "Tu nombre no puede ser mayor a 32 caracteres." })

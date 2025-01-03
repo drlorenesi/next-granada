@@ -6,9 +6,9 @@ const allowedPaths = [
   "/registro",
   "/solicitar",
   "/confirmar",
+  "/error",
   "/exito-registro",
   "/exito-verificacion",
-  "/error-verificacion",
 ];
 
 export async function middleware(request: NextRequest) {

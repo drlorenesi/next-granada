@@ -19,7 +19,7 @@ export function RegisterForm() {
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      name: "",
+      firstName: "",
       lastName: "",
       email: "",
       password: "",
@@ -53,7 +53,7 @@ export function RegisterForm() {
             <div className="flex flex-col gap-2">
               <FormInputField
                 form={form}
-                name="name"
+                name="firstName"
                 label="Nombre"
                 autocomplete="given-name"
               />

@@ -25,9 +25,9 @@ export async function signup(formData: z.infer<typeof registerSchema>) {
     password: validData.password,
     options: {
       data: {
-        first_name: validData.name,
+        first_name: validData.firstName,
         last_name: validData.lastName,
-        display_name: `${validData.name} ${validData.lastName}`,
+        display_name: `${validData.firstName} ${validData.lastName}`,
         suspended: false,
       },
     },
