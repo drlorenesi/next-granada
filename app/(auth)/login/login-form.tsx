@@ -9,6 +9,7 @@ import { FormInputField } from "@/components/form-inputs/form-input-field";
 import { SubmitButton } from "@/components/form-inputs/submit-button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Check } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -47,8 +48,13 @@ export function LoginForm() {
       });
     } else {
       toast({
-        title: "Sesión Iniciada ✅",
-        description: "Has iniciado una nueva sesión exitosamente.",
+        className: "bg-green-950 border-green-800 text-green-50",
+        description: (
+          <div className="flex items-center gap-2">
+            <Check className="h-5 w-5 text-green-400" />
+            <span>Sesión iniciada!</span>
+          </div>
+        ),
         duration: 3000,
       });
       router.push("/");

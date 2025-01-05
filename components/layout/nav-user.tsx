@@ -18,6 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Check } from "lucide-react";
 
 import { toast } from "@/hooks/use-toast";
 import { createClient } from "@/utils/supabase/client";
@@ -40,9 +41,19 @@ export function NavUser({
     try {
       const supabase = createClient();
       await supabase.auth.signOut();
+      // toast({
+      //   title: "Sesión Finalizada 👋",
+      //   description: "Has finalizado tu sesión correctamente. ¡Hasta pronto!",
+      //   duration: 3000,
+      // });
       toast({
-        title: "Sesión Finalizada 👋",
-        description: "Has finalizado tu sesión correctamente. ¡Hasta pronto!",
+        className: "bg-green-950 border-green-800 text-green-50",
+        description: (
+          <div className="flex items-center gap-2">
+            <Check className="h-5 w-5 text-green-400" />
+            <span>Sesión terminada.</span>
+          </div>
+        ),
         duration: 3000,
       });
       router.push("/login");

@@ -95,13 +95,6 @@ const desarrollo = {
   ],
 };
 
-// interface User {
-//   name: string;
-//   email: string;
-//   avatar?: string;
-//   initials?: string;
-// }
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
