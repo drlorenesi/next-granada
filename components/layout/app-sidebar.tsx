@@ -1,15 +1,19 @@
 "use client";
 
 import * as React from "react";
-import { ChartPie, Package, SquareChevronRight } from "lucide-react";
+import Link from "next/link";
+import { ChartPie, Package, SquareChevronRight, Triangle } from "lucide-react";
 
-import { NavHeader } from "./nav-header";
 import { NavGroup } from "@/components/layout/nav-group";
 import { NavUser } from "@/components/layout/nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
 
@@ -98,7 +102,23 @@ const desarrollo = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <NavHeader />
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-secondary text-sidebar-primary-foreground">
+                  <Triangle className="size-4" />
+                </div>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">Granada</span>
+                  <span className="truncate text-xs">Ltda.</span>
+                </div>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
       <SidebarContent>
         <NavGroup label={generales.label} items={generales.items} />
         <NavGroup label={desarrollo.label} items={desarrollo.items} />
