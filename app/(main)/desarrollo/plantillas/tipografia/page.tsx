@@ -3,7 +3,8 @@ import { Separator } from "@/components/ui/separator";
 
 export default function Tipografia() {
   return (
-    <div className="container mx-auto p-6 space-y-8">
+    // <div className="container mx-auto p-6 space-y-8">
+    <div className="container space-y-6">
       <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
         Typography Showcase
       </h1>
