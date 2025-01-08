@@ -30,6 +30,10 @@ const FormSchema = z.object({
     .date({
       required_error: "Se requiere una fecha de inicio.",
     })
+    .transform((value) => {
+      const date = new Date(value); // Parse the string into a Date object
+      return date.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+    })
     .nullable(),
 });
 
@@ -39,6 +43,7 @@ export function DatePickerForm() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(data);
     toast({
       title: "You submitted the following values:",
       description: (
@@ -57,7 +62,7 @@ export function DatePickerForm() {
           name="fechaInicio"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Date of birth</FormLabel>
+              <FormLabel>Fecha de inicio</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -69,9 +74,9 @@ export function DatePickerForm() {
                       )}
                     >
                       {field.value ? (
-                        format(field.value, "PPP")
+                        format(field.value, "dd/MM/yyyy")
                       ) : (
-                        <span>Pick a date</span>
+                        <span>Ingresa una fecha</span>
                       )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
@@ -80,7 +85,7 @@ export function DatePickerForm() {
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
-                    selected={field.value || undefined}
+                    selected={field.value ? new Date(field.value) : undefined}
                     onSelect={field.onChange}
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
@@ -89,14 +94,12 @@ export function DatePickerForm() {
                   />
                 </PopoverContent>
               </Popover>
-              <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription>
+              <FormDescription>Esta es la fecha de inicio.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Enviar</Button>
       </form>
     </Form>
   );
