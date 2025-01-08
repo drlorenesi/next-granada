@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -38,6 +39,8 @@ const FormSchema = z.object({
 });
 
 export function DatePickerForm() {
+  const [open, setOpen] = useState(false);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -63,22 +66,22 @@ export function DatePickerForm() {
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Fecha de inicio</FormLabel>
-              <Popover>
+              <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
+                        "w-[240px] justify-start text-left font-normal",
                         !field.value && "text-muted-foreground"
                       )}
                     >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
                       {field.value ? (
                         format(field.value, "dd/MM/yyyy")
                       ) : (
                         <span>Ingresa una fecha</span>
                       )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
@@ -86,10 +89,10 @@ export function DatePickerForm() {
                   <Calendar
                     mode="single"
                     selected={field.value ? new Date(field.value) : undefined}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
+                    onSelect={(date) => {
+                      field.onChange(date);
+                      setOpen(false); // Close the calendar after selection
+                    }}
                     initialFocus
                   />
                 </PopoverContent>
