@@ -15,4 +15,12 @@
 
 ## Misc
 
+Adding components using shadcn:
+
+```bash
+npx shadcn@latest add popover calendar
+```
+
+## Completed
+
 - [x] `manifest.json` not linking up propperly.
